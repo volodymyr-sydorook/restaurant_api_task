@@ -1,0 +1,21 @@
+version: '3'
+services:
+  web:
+    build: .  # Вказати посилання на контекст з Dockerfile
+    volumes:
+      - ./code:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - POSTGRES_DB=vovadb
+      - POSTGRES_USER=vova
+      - POSTGRES_PASSWORD=vova
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: vovadb
+      POSTGRES_USER: vova
+      POSTGRES_PASSWORD: vova
